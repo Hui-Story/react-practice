@@ -1,0 +1,52 @@
+/* 전역적 클래스 이름 사용 */
+:global .my-global-name {
+  font-size: 2rem;
+}
+
+/* module 을 사용하지 않는 곳에서 고유 클래스 이름 사용 */
+:local .make-this-local {
+  font-size: 1rem;
+}
+
+/* ---- Sass 에서 사용하는 경우 ----
+:local {
+  .make-this-local {
+    font-size: 1rem;
+  }
+}
+*/
+
+.checkbox {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox label {
+  cursor: pointer;
+}
+
+/* 실제 input 을 숨기기 위한 코드 */
+.checkbox input {
+  width: 0;
+  height: 0;
+  position: absolute;
+  opacity: 0;
+}
+
+.checkbox span {
+  font-size: 1.125rem;
+  font-weight: bold;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  /* 아이콘의 크기는 폰트 사이즈로 조정 가능 */
+  font-size: 2rem;
+  margin-right: 0.25rem;
+  color: #adb5bd;
+}
+
+.checked {
+  color: #339af0;
+}
