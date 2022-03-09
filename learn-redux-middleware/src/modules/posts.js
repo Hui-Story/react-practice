@@ -6,7 +6,7 @@ import {
   createPromiseSaga,
   createPromiseSagaById,
 } from "../lib/asyncUtils";
-import { getContext, takeEvery } from "redux-saga/effects";
+import { takeEvery } from "redux-saga/effects";
 
 /* 액션 타입 */
 
