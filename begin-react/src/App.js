@@ -1,6 +1,7 @@
-import React, { useMemo, useReducer } from 'react';
-import UserList from './UserList';
-import CreateUser from './CreateUser';
+import React, { useMemo, useReducer } from "react";
+import UserList from "./UserList";
+import Counter from "./Counter";
+import CreateUser from "./CreateUser";
 /*
   -- immer 라이브러리 --
   $ yarn add immer 후 사용
@@ -8,11 +9,11 @@ import CreateUser from './CreateUser';
   간단한 javascript 코드는 오히려 immer 로 인해 복잡해질 수 있음
   -> 선택적으로 사용할 것
 */
-import produce from 'immer';
+import produce from "immer";
 
 function countActiveUsers(users) {
-  console.log('활성 사용자 수를 세는중...');
-  return users.filter(user => user.active).length;
+  console.log("활성 사용자 수를 세는중...");
+  return users.filter((user) => user.active).length;
 }
 
 const initialState = {
@@ -25,41 +26,41 @@ const initialState = {
   users: [
     {
       id: 1,
-      username: 'velopert',
-      email: 'public.velopert@gmail.com',
-      active: true
+      username: "velopert",
+      email: "public.velopert@gmail.com",
+      active: true,
     },
     {
       id: 2,
-      username: 'tester',
-      email: 'tester@example.com',
-      active: false
+      username: "tester",
+      email: "tester@example.com",
+      active: false,
     },
     {
       id: 3,
-      username: 'liz',
-      email: 'liz@example.com',
-      active: false
-    }
-  ]
+      username: "liz",
+      email: "liz@example.com",
+      active: false,
+    },
+  ],
 };
 
 function reducer(state, action) {
   switch (action.type) {
-    case 'CREATE_USER':
-      return produce(state, draft => {
-        draft.users.push(action.user)
+    case "CREATE_USER":
+      return produce(state, (draft) => {
+        draft.users.push(action.user);
       });
-    case 'TOGGLE_USER':
-      return produce(state, draft => {
-        const user = draft.users.find(user => user.id === action.id);
+    case "TOGGLE_USER":
+      return produce(state, (draft) => {
+        const user = draft.users.find((user) => user.id === action.id);
         user.active = !user.active;
       });
-    case 'REMOVE_USER':
-      return produce(state, draft => {
-        const index = draft.users.findIndex(user => user.id === action.id);
+    case "REMOVE_USER":
+      return produce(state, (draft) => {
+        const index = draft.users.findIndex((user) => user.id === action.id);
         draft.users.splice(index, 1);
-      })
+      });
     default:
       return state;
     // ---- useInputs.js (커스텀 hooks) 로 대체 ----
@@ -148,6 +149,7 @@ function App() {
   return (
     // div 태그 없이 바로 묶어줄 수 있음
     <UserDispatch.Provider value={dispatch}>
+      <Counter />
       <CreateUser />
       <UserList users={users} />
       <div>활성 사용자 수 : {count}</div>
